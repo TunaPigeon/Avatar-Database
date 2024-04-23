@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
+
+#headings {
+  font-family: "Finger Paint", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  background: #212529;
+  border-radius: 15px;
+  box-shadow: 0 0 40px 5px white;
+  color: white;
+  border: white 5px;
+  border-style: double;
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+}
+
+#data {
+  background: rgba(0, 0, 0, 70%);
+  width: inherit;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  color: black;
+  box-shadow: 0 0 40px 5px white;
+
+}
+
+body {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  background-color: grey !important;
+}
+
+#themes {
+  margin: 10px;
+  display: inline-block;
+
+}
+
+
+#buttons {
+  display: inline-block;
+  margin-top: 210px;
+  font-family: "Finger Paint", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+
+}
+
+#mainHeading {
+  display: inline-block;
+  color: white;
+  font-size: 100px;
+  margin-top: 4px;
+  border: white 5px;
+  border-style: double;
+  background: #212529;
+  padding: 10px;
+  text-align: center;
+  font-family: "Finger Paint", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  z-index: -1;
+  box-shadow: 0 0 40px 15px white;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+.btn-primary:focus {
+  background-color: #212529 !important
+}
+
+.btn-primary:hover {
+  background-color: #3e4246 !important
+}
+
+
+.flip-card {
+  background-color: transparent;
+  perspective: 1000px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 250px;
+  text-align: center;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  background-color: white;
+  border: black solid 5px;
+}
+
+.card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  transform: rotateX(0deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+#headings {
+  margin-top: 250px;
+}
+
+.space1 {
+  height: 30px;
+}
+
+.space2 {
+  height: 125px;
+}
+
+#cardExpanded {
+  justify-content: center;
+}
+
+#sticky{
+  position:sticky;
+  top:0;
+}

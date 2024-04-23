@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCharts</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+        body{
+            background-color: #808080;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="btn btn-primary" href="index.html">Back</a>
+    <!-- Prepare a DOM with a defined width and height for ECharts -->
+    <div id="main" style="width: 100%;height:600px;"></div>
+    <script type="text/javascript">
+        // Specify the configuration items and data for the chart
+        let options = {
+            tooltip:{},
+            title: { text: 'Number of episodes directed by each director',
+            left: "center",
+            textStyle: {
+      fontSize: 40,
+      color: "rgba(0, 0, 0)"
+    },
+     },
+            xAxis: {
+                // data: ["men's clothing", "jewelery", 	"electronics", "women's clothing"]
+                data: [],
+                name: "Directors",
+                nameLocation: "middle",
+                nameTextStyle: {
+                verticalAlign: "top",
+                fontSize: 35,
+                color: "rgba(0, 0, 0, 1)"
+                },
+                nameGap: 30,
+                axisLabel: {
+      color: "rgba(0, 0, 0, 1)"
+    }
+
+            },
+            yAxis: [{
+                nameLocation: "middle",
+                splitNumber: 20,
+                name: "Numbers of Episodes",
+                nameTextStyle: {
+                align: "center",
+                verticalAlign: "bottom",
+                color: "rgba(0, 0, 0, 1)",
+                fontSize: 30,
+                
+                },
+                nameGap: 35,
+                axisLabel: {
+      color: "rgba(0, 0, 0, 1)"
+    }
+                
+            }],
+            series: [ 
+                {
+                    name: '',
+                    type: '',
+                    data: [] ,
+                    
+                    legendHoverLink: true
+                }
+            ]
+        };
+        fetch('https://api.sampleapis.com/avatar/episodes')
+            .then((response) => response.json())
+
+            .then((json) => {
+                getData(json)
+                 console.log(json)
+                // use this JSON to find and set correct option data for the chart
+            })
+            .then(() => {
+                // Display the chart
+                myChart.setOption(options);
+            })
+
+
+        // Initialise the echarts instance based on the prepared div
+        let myChart = echarts.init(document.getElementById('main'));
+
+        getData = (data) => {
+            getCategories(data);
+            getAmount(data);
+            //console.log(data);
+        }
+
+        getCategories = (data) => {
+            //console.log(data)
+            directors = []
+            count = 0;
+            for (let i = 0; i < data.length; i++) {
+
+                if (!directors.includes(data[i].DirectedBy)) {
+                    directors.push(data[i].DirectedBy)
+
+                }
+
+            }
+
+            console.log(directors)
+            options.xAxis.data = directors
+
+        }
+
+        getAmount = (data) => {
+            amount = {}
+            for (let i = 0; i < data.length; i++) {
+                amount[data[i].DirectedBy] = (amount[data[i].DirectedBy] || 0) + 1;
+            }
+
+            results = Object.values(amount)
+            console.log(results)
+
+            options.series = { name: 'Amount of episodes directed', type: 'bar', data: results }
+        }
+
+        
+
+    </script>
+</body>
+
+<!-- checked, completion receipt -->
+
+</html>

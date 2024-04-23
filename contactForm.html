@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+        body{
+            background-color: #808080;
+        }
+        form{
+            border: black solid 1px;
+            padding: 35px 50px;
+            
+        }
+        div{
+            
+            background-color: #808080;
+            margin: auto;
+            width: 50%;
+           
+            
+        }
+        div h1{
+            text-align: center;
+        }
+        div button{
+            text-align: center;
+        }
+       
+    </style>
+</head>
+
+<body>
+    <a class="btn btn-primary" href="index.html">Back</a>
+   <div>
+    
+    <form id="myForm" onsubmit ="printMessage()" >
+        <h1>Contact Us</h1>
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" required>
+          </div>
+
+
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="textArea" class="form-label">Message</label>
+            <textarea class="form-control" id="textArea" rows="3" required></textarea>
+          
+        </div>
+        <div class="mb-3">
+        <button type="submit" class="btn btn-primary" >Submit</button>
+    </div>
+      </form>
+    </div>
+</body>
+
+<div class ="text-center fs-3" id="success"></div>
+
+<script>
+
+const printMessage= ()=>
+{
+    firstName = document.getElementById("firstName").value
+    document.getElementById("success").innerText = "Thanks for contacting us " + firstName + ", we'll be in touch shortly"
+    document.getElementById("firstName").value = ""
+    document.getElementById("lastName").value = ""
+    document.getElementById("email").value = ""
+    document.getElementById("textArea").value = ""
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+        e.preventDefault() // Cancel the default action
+        sendContactForm();
+    });
+});
+
+
+</script>
+<!-- checked, completion receipt -->
+
+</html>

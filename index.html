@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css">
+  <title>Avatar - Jackie Fang</title>
+
+  <!-- Link to external javascript file -->
+  <script defer src="script.js"></script>
+  <!-- Bootstrap JS link -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+  <script src="https://code.iconify.design/2/2.1.0/iconify.min.js">
+  </script>
+</head>
+
+<body>
+
+
+  <!-- template for the quiz -->
+  <template id="quiz-template">
+    <div style="width: 18rem; margin: 10px ">
+      <div class="flip-card">
+        <div class="card-inner">
+          <div class="flip-card-front">
+            <h5 id="test123" class="card-id">Card id</h5>
+            <h5 class="card-title">Card title</h5>
+            <div class="space1"></div>
+            <p class="card-text">Card text.</p>
+          </div>
+
+          <div class="flip-card-back">
+            <div class="space2"></div>
+            <p class="card-price">Card price.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- template for characters -->
+  <template id="character-template">
+    <div class="card" style="width: 10rem; margin: 10px">
+      <div class="section">
+        <img class="card-img-top" alt="image" src="" referrerpolicy="no-referrer" />
+        <div class="card-body">
+          <h5 id="test123" class="card-id">Card id</h5>
+          <h5 class="card-title">Card title</h5>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- template for characters when clicked -->
+  <template id="character-template-expanded">
+    <div class="card" style="width: 50rem">
+      <div class="section">
+        <img class="card-img-top" alt="image" src="" referrerpolicy="no-referrer" />
+        <div class="card-body">
+          <h5 id="test123" class="card-id">Card id</h5>
+          <h5 class="card-title">Card title</h5>
+          <div class="sectionHidden">
+            <p class="card-text">Card text.</p>
+            <p class="card-price">Card price.</p>
+            <p class="card-ages">Card price.</p>
+            <p class="card-voice">Card price.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!--template for home screen-->
+  <template id="info-template">
+    <div class="card-body text-white">
+      <h5 id="test123" class="card-id">Card id</h5>
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Card text.</p>
+      <p class="card-price">Card price.</p>
+      <p class="creators">Card price.</p>
+    </div>
+  </template>
+
+  <!-- drop down bar from bootstrap -->
+  <div id="sticky">
+    
+    <div id="drop" class="dropdown">
+      <button id="themes" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Elements (Theme)
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" id="water" type="button" onclick="buttonThemes(this.id)" href="#">Water
+
+            <span class="iconify" data-icon="twemoji:water-wave" data-width="20" data-height="20"></span>
+
+          </a></li>
+
+        <li><a class="dropdown-item" id="earth" type="button" onclick="buttonThemes(this.id)" href="#">Earth
+            <span class="iconify" data-icon="noto:rock" data-width="20" data-height="20"></span>
+          </a></li>
+
+        <li><a class="dropdown-item " id="fire" type="button" onclick="buttonThemes(this.id)" href="#">Fire
+            <span class="iconify" data-icon="emojione:fire" data-width="20" data-height="20"></span>
+
+          </a></li>
+        <li><a class="dropdown-item" id="air" type="button" onclick="buttonThemes(this.id)" href="#">Air
+
+            <span class="iconify" data-icon="material-symbols:air" data-width="20" data-height="20"></span>
+
+          </a></li>
+        <li><a class="dropdown-item" id="default" type="button" onclick="buttonThemes(this.id)" href="#">Default</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+    
+<!-- logo -->
+  <p id="mainHeading" class="position-absolute top-0 start-50 translate-middle-x"> AVATAR </p>
+  <!-- buttons-->
+  <div id="buttons" class="position-absolute top-0 start-50 translate-middle-x ">
+
+    <button class="btn btn-primary  btn-dark shadow-none" onclick="getHome()"> Home
+
+      <span class="iconify" data-icon="material-symbols:home" data-width="15" data-height="15"></span>
+
+    </button>
+
+    <button class="btn btn-primary btn-dark shadow-none" onclick="getCharacters()">Characters
+
+      <span class="iconify" data-icon="game-icons:character" data-width="15" data-height="15"></span>
+
+    </button>
+
+    <button class="btn btn-primary btn-dark shadow-none" onclick="getQuiz()">Quiz
+
+      <span class="iconify" data-icon="material-symbols:quiz" data-width="15" data-height="15"></span>
+
+    </button>
+
+    <a class="btn btn-primary btn-dark shadow-none" href="viewersChart.html">Chart
+
+      <span class="iconify" data-icon="ep:trend-charts" data-width="15" data-height="15"></span>
+
+    </a>
+
+    <a class="btn btn-primary btn-dark shadow-none" href="contactForm.html">Contact Us
+
+      <span class="iconify" data-icon="emojione-monotone:speech-balloon" data-width="15" data-height="15"></span>
+
+    </a>
+
+  </div>
+
+
+  <!-- empty div to be filled in with info later-->
+  <div id="mainInfo" class="container text-center">
+
+    <!-- empty div to be filled in with info later-->
+    <div class="col">
+      <p class=" text-center" id="headings"></p>
+      <div id="cardExpanded" class=" row"></div>
+      <div id="data" class=" row text-center"></div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
